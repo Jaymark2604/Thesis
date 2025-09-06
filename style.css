@@ -1,0 +1,21 @@
+/* Custom styles for login page */
+body {
+    background: linear-gradient(to right, #00416A, #E4E5E6);
+}
+
+.card {
+    border-radius: 15px;
+}
+
+.card h4 {
+    color: #00416A;
+    font-weight: bold;
+}
+
+.btn-primary {
+    background-color: #00416A;
+    border: none;
+}
+.btn-primary:hover {
+    background-color: #006494;
+}
