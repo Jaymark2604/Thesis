@@ -3,23 +3,24 @@ session_start();
 include 'db.php';
 
 if (isset($_POST['login'])) {
-    $email = $_POST['email'];
+    $student_number = $_POST['student_number'];
     $password = $_POST['password'];
 
-    $stmt = $conn->prepare("SELECT * FROM students WHERE email = ?");
-    $stmt->bind_param("s", $email);
+    // Query student by student_number
+    $stmt = $conn->prepare("SELECT * FROM students WHERE student_number = ?");
+    $stmt->bind_param("s", $student_number);
     $stmt->execute();
     $result = $stmt->get_result();
     $student = $result->fetch_assoc();
 
-    // For testing: plain password check
+    // For testing: plain password check (replace with password_hash in production)
     if ($student && $password === $student['password']) {
         $_SESSION['student_id'] = $student['student_id'];
         $_SESSION['student_name'] = $student['name'];
         header("Location: student_dashboard.php");
         exit();
     } else {
-        $error = "Invalid email or password!";
+        $error = "Invalid student number or password!";
     }
 }
 ?>
@@ -44,12 +45,14 @@ if (isset($_POST['login'])) {
 
         <form method="POST" action="">
             <div class="mb-3">
-                <label class="form-label">Email</label>
-                <input type="email" name="email" required class="form-control">
+                <label class="form-label">Student Number</label>
+                <input type="number" name="student_number" required class="form-control" 
+                       placeholder="Enter student number" min="1" step="1">
             </div>
             <div class="mb-3">
                 <label class="form-label">Password</label>
-                <input type="password" name="password" required class="form-control">
+                <input type="password" name="password" required class="form-control" 
+                       placeholder="Enter password">
             </div>
             <button type="submit" name="login" class="btn btn-primary w-100">Login</button>
         </form>
