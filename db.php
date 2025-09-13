@@ -1,10 +1,10 @@
 <?php
-$host = "localhost";   // XAMPP default
-$user = "root";        // XAMPP default
-$pass = "";            // XAMPP default (no password)
-$dbname = "school_portal";
+$servername = "localhost";
+$username = "root";  // default XAMPP user
+$password = "";      // default XAMPP password is empty
+$dbname = "ojt_portal";
 
-$conn = new mysqli($host, $user, $pass, $dbname);
+$conn = new mysqli($servername, $username, $password, $dbname);
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
