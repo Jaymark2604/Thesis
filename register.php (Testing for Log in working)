@@ -1,0 +1,32 @@
+<?php
+include 'db.php';
+
+if (isset($_POST['register'])) {
+    $student_number = $_POST['student_number'];
+    $password = password_hash($_POST['password'], PASSWORD_DEFAULT); // hashed password
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $address = $_POST['address'];
+    $course = $_POST['course'];
+
+    $stmt = $conn->prepare("INSERT INTO students (student_number, password, name, email, address, course) 
+                            VALUES (?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("ssssss", $student_number, $password, $name, $email, $address, $course);
+
+    if ($stmt->execute()) {
+        echo "Student registered successfully!";
+    } else {
+        echo "Error: " . $stmt->error;
+    }
+}
+?>
+
+<form method="POST">
+    Student Number: <input type="text" name="student_number" required><br>
+    Password: <input type="password" name="password" required><br>
+    Name: <input type="text" name="name" required><br>
+    Email: <input type="email" name="email" required><br>
+    Address: <input type="text" name="address" required><br>
+    Course: <input type="text" name="course" required><br>
+    <button type="submit" name="register">Register</button>
+</form>
