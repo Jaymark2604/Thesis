@@ -8,59 +8,27 @@ if (!isset($_SESSION['student_id'])) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Student Dashboard</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PLMUN Portal</title>
+  <link rel="icon" type="image/png" href="image/PLMUNLogo.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="assets/css/dashboard.css">
 </head>
-<body>
+<body class="bg-gray-50 text-gray-800 min-h-screen">
 
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <div class="container-fluid">
-    <a class="navbar-brand fw-bold" href="#">PLMUN Portal</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+<div class="grid grid-cols-12 gap-6 max-w-7xl mx-auto p-6">
+  
+  <!-- Include Sidebar -->
+  <?php include 'includes/sidebar.php'; ?>
 
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav me-auto">
-        <li class="nav-item">
-          <a class="nav-link active" href="#">Attendance</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Consultation</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Account</a>
-        </li>
-      </ul>
+  <!-- Main Content -->
+  <main class="col-span-12 md:col-span-9 lg:col-span-10 bg-white rounded-2xl p-6 shadow-sm">
+    <h1 class="text-2xl font-semibold mb-4">Dashboard</h1>
+    <p>Welcome to your student dashboard!</p>
+  </main>
 
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <span class="navbar-text text-white me-3">
-            Welcome, <?php echo $_SESSION['student_name']; ?>
-          </span>
-        </li>
-        <li class="nav-item">
-          <a class="btn btn-outline-light btn-sm" href="logout.php">Logout</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<!-- Main Content -->
-<div class="container mt-4">
-    <div class="card shadow-sm p-4">
-        <h3 class="mb-3">Student Dashboard</h3>
-        <p class="lead">You are logged in as a student. Use the navigation bar above to access features.</p>
-    </div>
 </div>
 
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
